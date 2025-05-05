@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //acá muevo el fondo de la playa
         backgroud.material.mainTextureOffset = backgroud.material.mainTextureOffset + new Vector2(0.015f, 0) * Time.deltaTime;

@@ -401,6 +401,7 @@ MonoBehaviour:
   politician: {fileID: 4801977103455831883, guid: 2817001815040dd4391152fb49e22184, type: 3}
   obstaculos: []
   velocitity: 2
+  frisbee: {fileID: 1381155908767113855, guid: 6c6cce52c7a0bea4f97f3c22854d32fa, type: 3}
 --- !u!4 &582437184
 Transform:
   m_ObjectHideFlags: 0
@@ -500,6 +501,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &705140936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 705140937}
+  m_Layer: 0
+  m_Name: PoopPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &705140937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705140936}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.62, y: -0.39, z: 0.047513526}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1547474271}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1547474269
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +620,8 @@ Transform:
   m_LocalPosition: {x: -5.109781, y: 1.8562875, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 705140937}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1547474272
@@ -672,6 +705,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  poop: {fileID: 2612938758587690151, guid: d55a6a3d5a171d64295ede0c4c14c4c0, type: 3}
+  poopPoint: {fileID: 705140937}
 --- !u!50 &1547474275
 Rigidbody2D:
   serializedVersion: 5

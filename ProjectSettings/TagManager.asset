@@ -8,6 +8,8 @@ TagManager:
   - Turist
   - Politician
   - Obstaculo
+  - Poop
+  - Frisbee
   layers:
   - Default
   - TransparentFX

@@ -17,7 +17,17 @@ public class GameManager : MonoBehaviour
     
     public float velocitity = 2;
 
-    
+    public GameObject frisbee;
+    private GameObject frisbeeInstance;
+    private float frisbeeSpeed = 4f;
+    private float frisbeeDirection = 1f;
+
+    //Los límites de movimiento del frisbee
+    private float upperBound = 4;
+    private float lowerBound = -3.5f;
+
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,7 +40,14 @@ public class GameManager : MonoBehaviour
 
         //creo el turista
         obstaculos.Add(Instantiate(turist, new Vector2(14, -3), Quaternion.identity));
-        obstaculos.Add(Instantiate(politician, new Vector2(18, -3), Quaternion.identity));
+
+        //creo al político
+        obstaculos.Add(Instantiate(politician, new Vector2(20, -3), Quaternion.identity));
+
+        //creo el frisbee
+        frisbeeInstance = Instantiate(frisbee, new Vector2(10f, Random.Range(lowerBound, upperBound)), Quaternion.identity);
+        Debug.Log("Frisbee creado");
+
     }
 
     // Update is called once per frame
@@ -59,6 +76,43 @@ public class GameManager : MonoBehaviour
             }
             obstaculos[i].transform.position = obstaculos[i].transform.position + new Vector3(-1, 0, 0) * Time.deltaTime * velocitity;
         }
+
+        //mover frisbee
+        if (frisbeeInstance != null)
+        {
+            // Movimiento vertical (rebota entre límites)
+            Vector3 position = frisbeeInstance.transform.position;
+
+            //Movmiento en forma de zigzag
+            position.x += -1 * Time.deltaTime * velocitity;
+            position.y += frisbeeSpeed * frisbeeDirection * Time.deltaTime;
+
+            // Rebotar en los límites superior e inferior
+            if (position.y >= upperBound)
+            {
+                position.y = upperBound;
+                frisbeeDirection = -1f;
+            }
+            else if (position.y <= lowerBound)
+            {
+                position.y = lowerBound;
+                frisbeeDirection = 1f;
+            }
+
+            // Movimiento horizontal como los demás
+            position.x += -1 * Time.deltaTime * velocitity;
+
+            // Resetear si sale de la pantalla
+            if (position.x < -11f)
+            {
+                position = new Vector3(20f, Random.Range(lowerBound, upperBound), 0);
+                // Randomizar la dirección inicial
+                frisbeeDirection = Random.value > 0.5f ? 1f : -1f; 
+            }
+
+            frisbeeInstance.transform.position = position;
+        }
+
 
 
     }

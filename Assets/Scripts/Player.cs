@@ -8,8 +8,12 @@ public class Player : MonoBehaviour
     private float lowerBound= -3.5f;
 
     // Posición inicial de la gaviota
-    private Vector2 startPos; 
-    
+    private Vector2 startPos;
+
+    // Prefab de la caca y la posición de lanzamiento
+    public GameObject poop; 
+    public Transform poopPoint; 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,7 +25,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         PlayerMovement();
-
+        // Lanza la caca al presionar la barra espaciadora
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject poopInstance = Instantiate(poop, poopPoint.position, Quaternion.identity);
+            poopInstance.GetComponent<Poop>().Activate(); // Activar colisiones
+        }
     }
     void PlayerMovement()
     {
@@ -56,6 +65,13 @@ public class Player : MonoBehaviour
             //Destroy(collision.gameObject); // Lo destruimos
             //GameManager.Instance.PerderLife();
         }
+
+        if (collision.CompareTag("Frisbee")) // Si colisionamos con un turista
+        {
+            Debug.Log("Colisión con Frisbee");
+            //GameManager.Instance.GanarOjota();
+        }
+
     }
 
 

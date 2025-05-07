@@ -12,12 +12,16 @@ public class Player : MonoBehaviour
 
     // Prefab de la caca y la posición de lanzamiento
     public GameObject poop; 
-    public Transform poopPoint; 
+    public Transform poopPoint;
+
+    private Animator animator;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         startPos = transform.position;
+        animator = GetComponent<Animator>();
 
     }
 
@@ -31,6 +35,9 @@ public class Player : MonoBehaviour
             GameObject poopInstance = Instantiate(poop, poopPoint.position, Quaternion.identity);
             poopInstance.GetComponent<Poop>().Activate(); // Activar colisiones
         }
+
+
+
     }
     void PlayerMovement()
     {
@@ -53,8 +60,11 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Turist")) // Si colisionamos con un turista
         {
-            Debug.Log("Colisión con turista"); 
+            Debug.Log("Colisión con turista");
             //GameManager.Instance.GanarOjota();
+
+            //cambia la animación de la gaviota
+            animator.SetBool("hasFlipFlop",true);
         }
 
         if (collision.CompareTag("Politician")) // Si colisionamos con un turista

@@ -17,6 +17,12 @@ public class Player : MonoBehaviour
     private Animator animator;
 
 
+    // Prefab de la chancla y la posición de lanzamiento
+    public GameObject flipflop;
+    public Transform flipflopPoint;
+    private bool hasFlipFlop = false;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,8 +39,17 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject poopInstance = Instantiate(poop, poopPoint.position, Quaternion.identity);
-            poopInstance.GetComponent<Poop>().Activate(); // Activar colisiones
+            poopInstance.GetComponent<Poop>().Activate(); 
         }
+
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) && hasFlipFlop==true)
+        {
+            GameObject flipflopInstance = Instantiate(flipflop, flipflopPoint.position, Quaternion.identity);
+            flipflopInstance.GetComponent<FlipFlop>().Activate();
+            hasFlipFlop = false; // Desactivamos la chancla después de lanzarla
+        }
+
+
 
 
 
@@ -65,6 +80,11 @@ public class Player : MonoBehaviour
 
             //cambia la animación de la gaviota
             animator.SetBool("hasFlipFlop",true);
+
+            //cambia la posesión de la ojota sobre la gaviota
+            hasFlipFlop = true;
+
+
         }
 
         if (collision.CompareTag("Politician")) // Si colisionamos con un turista

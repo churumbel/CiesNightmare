@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     //para que el fondo de la playa se mueva
     public Renderer backgroud;
     //para generar el piso
@@ -26,8 +25,29 @@ public class GameManager : MonoBehaviour
     private float upperBound = 4;
     private float lowerBound = -3.5f;
 
+    private int lifes = 3;
+
+    // Singleton para acceder a la instancia de GameManager
+    public static GameManager Instance
+    {
+        get;
+        private set;
+    }
 
 
+    private void Awake()
+    {
+        //Patrón Singleton
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -116,4 +136,13 @@ public class GameManager : MonoBehaviour
 
 
     }
-}
+
+    public void LoseLife()
+    {
+        lifes--;
+        if (lifes < 0)
+        {
+            Debug.Log("Game over =(");
+        }
+    }
+ }

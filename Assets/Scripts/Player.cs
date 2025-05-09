@@ -1,7 +1,9 @@
 using UnityEngine;
 
 public class Player : MonoBehaviour
+
 {
+    
     [SerializeField] private float speed;
     //[SerializeField] private float bound = 4.5f;
     private float upperBound=4;
@@ -21,6 +23,10 @@ public class Player : MonoBehaviour
     public GameObject flipflop;
     public Transform flipflopPoint;
     private bool hasFlipFlop = false;
+
+    //private bool beingHurt;
+
+    
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -49,10 +55,6 @@ public class Player : MonoBehaviour
             hasFlipFlop = false; // Desactivamos la chancla después de lanzarla
         }
 
-
-
-
-
     }
     void PlayerMovement()
     {
@@ -79,7 +81,8 @@ public class Player : MonoBehaviour
             //GameManager.Instance.GanarOjota();
 
             //cambia la animación de la gaviota
-            animator.SetBool("hasFlipFlop",true);
+            animator.SetBool("hasFlipFlop", true);
+            animator.SetBool("wasHurt", false);
 
             //cambia la posesión de la ojota sobre la gaviota
             hasFlipFlop = true;
@@ -94,15 +97,29 @@ public class Player : MonoBehaviour
             //si la chancla toca al político, debería destruir al proyecto de ley
             //Destroy(collision.gameObject); // Lo destruimos
             //GameManager.Instance.PerderLife();
+            BeHurt();
         }
 
         if (collision.CompareTag("Frisbee")) // Si colisionamos con un turista
         {
             Debug.Log("Colisión con Frisbee");
             //GameManager.Instance.GanarOjota();
+            BeHurt();
         }
 
     }
+
+    public void BeHurt() 
+    {
+        //beingHurt = true;
+        animator.SetBool("hasFlipFlop", false);
+        animator.SetBool("wasHurt", true);
+        GameManager.Instance.LoseLife();
+        
+
+    }
+
+
 
 
 

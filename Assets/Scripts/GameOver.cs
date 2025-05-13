@@ -1,21 +1,22 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuSystem : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
+    
     public void Play()
+
     {
         if (GameManager.Instance != null)
         {
-            Destroy(GameManager.Instance.gameObject);
+            Destroy(GameManager.Instance.gameObject); 
         }
+
         SceneManager.LoadScene("GameScene");
     }
 
-    public void Quit()
+    public void GoToMenu()
     {
-        Application.Quit();
-        Debug.Log("Quit");
+        SceneManager.LoadScene("Menu");
     }
-
 }

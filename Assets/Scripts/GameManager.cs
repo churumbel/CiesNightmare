@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 21; i++)
         {
             //instancio el piso
-            flat.Add(Instantiate(floor, new Vector2(-10+i,-4), Quaternion.identity));
+            flat.Add(Instantiate(floor, new Vector2(-10+i,-5), Quaternion.identity));
         }
 
         //creo el turista
@@ -74,9 +75,14 @@ public class GameManager : MonoBehaviour
     void FixedUpdate()
     {
         //acá muevo el fondo de la playa
-        backgroud.material.mainTextureOffset = backgroud.material.mainTextureOffset + new Vector2(0.015f, 0) * Time.deltaTime;
+        //backgroud.material.mainTextureOffset = backgroud.material.mainTextureOffset + new Vector2(0.015f, 0) * Time.deltaTime;
+        if (backgroud != null)
+        {
+            backgroud.material.mainTextureOffset += new Vector2(0.015f, 0) * Time.deltaTime;
+        }
 
         //muevo el piso
+        /*
         for (int i = 0; i < flat.Count; i++)
         {
             if(flat[i].transform.position.x <= -10)
@@ -84,11 +90,13 @@ public class GameManager : MonoBehaviour
                 flat[i].transform.position = new Vector3(10, -4,0);
             }
             flat[i].transform.position = flat[i].transform.position + new Vector3(-1,0,0) * Time.deltaTime*velocitity;
-        }
+        }*/
 
         //mover obstaculos
         for (int i = 0; i < obstaculos.Count; i++)
         {
+            // Para evitar el acceso a objetos destruidos
+            if (obstaculos[i] == null) continue; 
             if (obstaculos[i].transform.position.x <= -10)
             {
                 float randomObstaculos = Random.Range(11, 18);
@@ -143,6 +151,18 @@ public class GameManager : MonoBehaviour
         if (lifes < 0)
         {
             Debug.Log("Game over =(");
+            SceneManager.LoadScene("GameOver");
+            RestartGame();
         }
     }
- }
+    public void RestartGame()
+    {
+        lifes = 3;
+        // Reiniciar la posición del frisbee
+        if (frisbeeInstance != null)
+        {
+            Destroy(frisbeeInstance);
+            frisbeeInstance = Instantiate(frisbee, new Vector2(10f, Random.Range(lowerBound, upperBound)), Quaternion.identity);
+        }
+     }
+}

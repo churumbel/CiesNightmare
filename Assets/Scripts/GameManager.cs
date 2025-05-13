@@ -17,16 +17,47 @@ public class GameManager : MonoBehaviour
     
     public float velocitity = 2;
 
+    private string enemigoTipo;
     public GameObject frisbee;
     private GameObject frisbeeInstance;
     private float frisbeeSpeed = 4f;
     private float frisbeeDirection = 1f;
+    private float nubeDirection = 1f;
+
+
+    //para el nivel 2
+    public GameObject nube; 
+    private GameObject enemigoActual;
+    public GameObject piedra;
+    public GameObject fabrica;
+
+
+    private int puntosTotales=0;
 
     //Los límites de movimiento del frisbee
     private float upperBound = 4;
     private float lowerBound = -3.5f;
 
     private int lifes = 3;
+
+    public HUD hud;
+    public int PuntosTotales {get { return puntosTotales; } }
+    public void SumarPuntos(int puntosASumar) 
+    {
+        puntosTotales += puntosASumar;
+        hud.UpdatePuntos(puntosTotales);
+        Debug.Log("Puntos totales: " + puntosTotales);
+    }
+    public void RestarPuntos(int puntosARestar)
+    {
+        if (puntosTotales > 0)
+        {
+            puntosTotales -= puntosARestar;
+            Debug.Log("Puntos totales: " + puntosTotales);
+        }
+    }
+
+
 
     // Singleton para acceder a la instancia de GameManager
     public static GameManager Instance
@@ -53,21 +84,7 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        for (int i = 0; i < 21; i++)
-        {
-            //instancio el piso
-            flat.Add(Instantiate(floor, new Vector2(-10+i,-5), Quaternion.identity));
-        }
-
-        //creo el turista
-        obstaculos.Add(Instantiate(turist, new Vector2(14, -3), Quaternion.identity));
-
-        //creo al político
-        obstaculos.Add(Instantiate(politician, new Vector2(20, -3), Quaternion.identity));
-
-        //creo el frisbee
-        frisbeeInstance = Instantiate(frisbee, new Vector2(10f, Random.Range(lowerBound, upperBound)), Quaternion.identity);
-        Debug.Log("Frisbee creado");
+        
 
     }
 
@@ -106,39 +123,87 @@ public class GameManager : MonoBehaviour
         }
 
         //mover frisbee
-        if (frisbeeInstance != null)
+        if (enemigoActual != null)
         {
-            // Movimiento vertical (rebota entre límites)
-            Vector3 position = frisbeeInstance.transform.position;
+            Vector3 position = enemigoActual.transform.position;
 
-            //Movmiento en forma de zigzag
-            position.x += -1 * Time.deltaTime * velocitity;
-            position.y += frisbeeSpeed * frisbeeDirection * Time.deltaTime;
-
-            // Rebotar en los límites superior e inferior
-            if (position.y >= upperBound)
+            if (enemigoTipo == "frisbee")
             {
-                position.y = upperBound;
-                frisbeeDirection = -1f;
+                // Movimiento zigzag vertical
+                position.x += -1 * Time.deltaTime * velocitity;
+                position.y += frisbeeSpeed * frisbeeDirection * Time.deltaTime;
+
+                if (position.y >= upperBound)
+                {
+                    position.y = upperBound;
+                    frisbeeDirection = -1f;
+                }
+                else if (position.y <= lowerBound)
+                {
+                    position.y = lowerBound;
+                    frisbeeDirection = 1f;
+                }
+
+                if (position.x < -11f)
+                {
+                    position = new Vector3(20f, Random.Range(lowerBound, upperBound), 0);
+                    frisbeeDirection = Random.value > 0.5f ? 1f : -1f;
+                }
             }
-            else if (position.y <= lowerBound)
+            else if (enemigoTipo == "nube")
             {
-                position.y = lowerBound;
-                frisbeeDirection = 1f;
+                float nubeSpeed = frisbeeSpeed * 1.5f;
+                position.x += -1 * Time.deltaTime * velocitity;
+                position.y += nubeSpeed * nubeDirection * Time.deltaTime;
+
+                if (position.y >= upperBound)
+                {
+                    position.y = upperBound;
+                    nubeDirection = -1f;
+                }
+                else if (position.y <= lowerBound)
+                {
+                    position.y = lowerBound;
+                    nubeDirection = 1f;
+                }
+
+                if (position.x < -11f)
+                {
+                    float yPos = Random.Range(lowerBound, upperBound);  // más variado
+                    position = new Vector3(20f, yPos, 0);
+                    nubeDirection = Random.value > 0.5f ? 1f : -1f;
+                }
             }
 
-            // Movimiento horizontal como los demás
-            position.x += -1 * Time.deltaTime * velocitity;
 
-            // Resetear si sale de la pantalla
-            if (position.x < -11f)
+            enemigoActual.transform.position = position;
+        }
+
+
+        if (puntosTotales>3) {
+            string nivelActual = SceneManager.GetActiveScene().name;
+            if(nivelActual == "GameScene")
             {
-                position = new Vector3(20f, Random.Range(lowerBound, upperBound), 0);
-                // Randomizar la dirección inicial
-                frisbeeDirection = Random.value > 0.5f ? 1f : -1f; 
+                Debug.Log("Pasaste al siguiente nivel");
+                // Cambia a la escena del siguiente nivel
+                SceneManager.LoadScene("ChangeLevel");
+                //NextLevel();
+            }
+            
+
+        }
+        if (puntosTotales > 10)
+        {
+            string nivelActual = SceneManager.GetActiveScene().name;
+            if (nivelActual == "GameSceneLevel2")
+            {
+                Debug.Log("Ganaste");
+                // Cambia a la escena del siguiente nivel
+                SceneManager.LoadScene("GameWinner");
+                //NextLevel();
             }
 
-            frisbeeInstance.transform.position = position;
+
         }
 
 
@@ -148,7 +213,8 @@ public class GameManager : MonoBehaviour
     public void LoseLife()
     {
         lifes--;
-        if (lifes < 0)
+        hud.DesactivateLife(lifes);
+        if (lifes < 1)
         {
             Debug.Log("Game over =(");
             SceneManager.LoadScene("GameOver");
@@ -158,11 +224,90 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         lifes = 3;
-        // Reiniciar la posición del frisbee
-        if (frisbeeInstance != null)
+
+        if (enemigoActual != null)
         {
-            Destroy(frisbeeInstance);
-            frisbeeInstance = Instantiate(frisbee, new Vector2(10f, Random.Range(lowerBound, upperBound)), Quaternion.identity);
+            Destroy(enemigoActual);
         }
-     }
+
+        string nivelActual = SceneManager.GetActiveScene().name;
+
+        if (nivelActual == "GameScene")
+        {
+            enemigoActual = Instantiate(frisbee, new Vector2(10f, Random.Range(lowerBound, upperBound)), Quaternion.identity);
+            enemigoTipo = "frisbee";
+        }
+        else if (nivelActual == "GameSceneLevel2")
+        {
+            float yPos = Random.value > 0.5f ? upperBound : lowerBound;
+            enemigoActual = Instantiate(nube, new Vector2(10f, yPos), Quaternion.identity);
+            enemigoTipo = "nube";
+        }
+    }
+
+
+    public void NextLevel()
+    {
+        if (enemigoActual != null)
+        {
+            Destroy(enemigoActual);
+        }
+
+        SceneManager.LoadScene("ChangeLevel");
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        InicializarEscena(scene.name);
+    }
+
+    private void InicializarEscena(string nivelActual)
+    {
+        if (nivelActual == "GameScene")
+        {
+            enemigoActual = Instantiate(frisbee, new Vector2(10f, Random.Range(lowerBound, upperBound)), Quaternion.identity);
+            enemigoTipo = "frisbee";
+            Debug.Log("Frisbee creado");
+
+            obstaculos.Clear();
+            obstaculos.Add(Instantiate(turist, new Vector2(14, -3), Quaternion.identity));
+            obstaculos.Add(Instantiate(politician, new Vector2(20, -3), Quaternion.identity));
+        }
+        else if (nivelActual == "GameSceneLevel2")
+        {
+            float yPos = Random.value > 0.5f ? upperBound : lowerBound;
+            enemigoActual = Instantiate(nube, new Vector2(10f, yPos), Quaternion.identity);
+            enemigoTipo = "nube";
+            nubeDirection = Random.value > 0.5f ? 1f : -1f;
+
+
+            obstaculos.Clear();
+            obstaculos.Add(Instantiate(piedra, new Vector2(14, -3), Quaternion.identity));
+            obstaculos.Add(Instantiate(fabrica, new Vector2(20, -3), Quaternion.identity));
+        }
+
+        // Asegurate de volver a encontrar el fondo si cambia entre escenas
+        backgroud = GameObject.FindWithTag("Background")?.GetComponent<Renderer>();
+    }
+
+    public void hadFlipFlop() { 
+    
+        hud.ActivateFlipFlop();
+    }
+
+    public void DesactivateFlipFlop()
+    {
+        hud.DesactivateFlipFlop();
+    }
+
 }

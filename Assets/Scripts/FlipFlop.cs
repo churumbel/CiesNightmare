@@ -31,6 +31,7 @@ public class FlipFlop : MonoBehaviour
         {
             Debug.Log("FlipFlop hit the turist!");
             // Destruye el objeto de la chancla al colisionar
+            GameManager.Instance.RestarPuntos(1);
             Destroy(gameObject);
         }
 
@@ -38,6 +39,7 @@ public class FlipFlop : MonoBehaviour
         {
             Debug.Log("FlipFlop hit the politician!");
             // Destruye el objeto de la chancla al colisionar
+            GameManager.Instance.SumarPuntos(5);
             Destroy(gameObject);
         }
 

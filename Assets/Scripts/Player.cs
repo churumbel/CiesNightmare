@@ -48,11 +48,12 @@ public class Player : MonoBehaviour
             poopInstance.GetComponent<Poop>().Activate(); 
         }
 
-        if (Input.GetKeyDown(KeyCode.KeypadEnter) && hasFlipFlop==true)
+        if (Input.GetKeyDown(KeyCode.C) && hasFlipFlop==true)
         {
             GameObject flipflopInstance = Instantiate(flipflop, flipflopPoint.position, Quaternion.identity);
             flipflopInstance.GetComponent<FlipFlop>().Activate();
             hasFlipFlop = false; // Desactivamos la chancla después de lanzarla
+            GameManager.Instance.DesactivateFlipFlop(); // Desactivamos la chancla en el GameManager
         }
 
     }
@@ -82,6 +83,7 @@ public class Player : MonoBehaviour
 
             //cambia la animación de la gaviota
             animator.SetBool("hasFlipFlop", true);
+            GameManager.Instance.hadFlipFlop(); // Cambia el estado de la chancla en el GameManager
             animator.SetBool("wasHurt", false);
 
             //cambia la posesión de la ojota sobre la gaviota
@@ -100,9 +102,15 @@ public class Player : MonoBehaviour
             BeHurt();
         }
 
-        if (collision.CompareTag("Frisbee")) // Si colisionamos con un turista
+        if (collision.CompareTag("Frisbee")) // Si colisionamos con un frisbee
         {
             Debug.Log("Colisión con Frisbee");
+            //GameManager.Instance.GanarOjota();
+            BeHurt();
+        }
+        if (collision.CompareTag("Cloud")) // Si colisionamos con un turista
+        {
+            Debug.Log("Colisión con Cloud");
             //GameManager.Instance.GanarOjota();
             BeHurt();
         }
@@ -118,9 +126,4 @@ public class Player : MonoBehaviour
         
 
     }
-
-
-
-
-
 }

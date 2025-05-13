@@ -3,8 +3,12 @@ using UnityEngine;
 public class Poop : MonoBehaviour
 {
     public float speed = 5f;
+
     //Me fijo si la caca está activa
     private bool isActive = false;
+
+    public int valor = 1;
+    
 
 
     void Update()
@@ -26,6 +30,7 @@ public class Poop : MonoBehaviour
         if (collision.gameObject.CompareTag("Turist"))
         {
             Debug.Log("Poop hit the turist!");
+            GameManager.Instance.RestarPuntos(valor);
             // Destruye el objeto de la caca al colisionar
             Destroy(gameObject); 
         }
@@ -33,6 +38,7 @@ public class Poop : MonoBehaviour
         if (collision.gameObject.CompareTag("Politician"))
         {
             Debug.Log("Poop hit the politician!");
+            GameManager.Instance.SumarPuntos(valor);
             // Destruye el objeto de la caca al colisionar
             Destroy(gameObject); 
         }
@@ -42,5 +48,15 @@ public class Poop : MonoBehaviour
             Debug.Log("Poop hit the floor!");
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.CompareTag("Factory"))
+        {
+            Debug.Log("Poop hit the factory!");
+            GameManager.Instance.SumarPuntos(valor);
+            Destroy(gameObject);
+        }
+
+
+
     }
 }

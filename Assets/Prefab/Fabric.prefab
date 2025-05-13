@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4801977103455831883
+--- !u!1 &6088666260616481501
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9178402261173227453}
-  - component: {fileID: 5547413334771919042}
-  - component: {fileID: 2821239357251329985}
+  - component: {fileID: 7043169986436090715}
+  - component: {fileID: 6965830298837795434}
+  - component: {fileID: 2027189698924636934}
+  - component: {fileID: 6080451346959818940}
   m_Layer: 0
-  m_Name: Politician
-  m_TagString: Politician
+  m_Name: Fabric
+  m_TagString: Factory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9178402261173227453
+--- !u!4 &7043169986436090715
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4801977103455831883}
+  m_GameObject: {fileID: 6088666260616481501}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.532, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5547413334771919042
+--- !u!212 &6965830298837795434
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4801977103455831883}
+  m_GameObject: {fileID: 6088666260616481501}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,24 +78,51 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2057516106615078274, guid: d7d2c6833cc97484c9decf3d08917f50, type: 3}
+  m_Sprite: {fileID: 3819260854097370103, guid: 722db45af785e854dafb79eda4d46cad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.8125, y: 2}
+  m_Size: {x: 0.24, y: 0.29}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2821239357251329985
-BoxCollider2D:
+--- !u!50 &2027189698924636934
+Rigidbody2D:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4801977103455831883}
+  m_GameObject: {fileID: 6088666260616481501}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!60 &6080451346959818940
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6088666260616481501}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -122,15 +150,26 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.06858927, y: -0.016138732}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8125, y: 1}
-    newSize: {x: 1.8125, y: 2}
+    oldSize: {x: 0.75, y: 0.90625}
+    newSize: {x: 0.24, y: 0.29}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.69086397, y: 1.0962356}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.08264314, y: 0.4234951}
+      - {x: -0.1671286, y: 0.4301052}
+      - {x: -0.17342435, y: 0.15596685}
+      - {x: -0.27371275, y: 0.12583533}
+      - {x: -0.30097768, y: -0.35501617}
+      - {x: -0.375, y: -0.453125}
+      - {x: 0.3611881, y: -0.44391704}
+      - {x: 0.29492527, y: -0.37726703}
+      - {x: 0.28292066, y: 0.13475832}
+      - {x: 0.06895816, y: 0.1542286}
+  m_UseDelaunayMesh: 0

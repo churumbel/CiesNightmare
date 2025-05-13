@@ -10,6 +10,11 @@ TagManager:
   - Obstaculo
   - Poop
   - Frisbee
+  - Factory
+  - rock
+  - player
+  - Background
+  - Cloud
   layers:
   - Default
   - TransparentFX

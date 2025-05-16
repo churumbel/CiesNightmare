@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6843045863543199221
+--- !u!1 &3233621454444174130
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4596378145306787724}
-  - component: {fileID: 7636986992479300226}
-  - component: {fileID: 8815729464505732772}
-  - component: {fileID: 8539787824907475567}
-  - component: {fileID: 859321409963654489}
+  - component: {fileID: 8733725145838527655}
+  - component: {fileID: 2223458535083750563}
+  - component: {fileID: 500438353237002594}
+  - component: {fileID: 2327718281292501239}
+  - component: {fileID: 2645643305233583164}
   m_Layer: 0
-  m_Name: Frisbee
-  m_TagString: Frisbee
+  m_Name: Snack
+  m_TagString: food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4596378145306787724
+--- !u!4 &8733725145838527655
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6843045863543199221}
+  m_GameObject: {fileID: 3233621454444174130}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -35,13 +35,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7636986992479300226
+--- !u!212 &2223458535083750563
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6843045863543199221}
+  m_GameObject: {fileID: 3233621454444174130}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -79,25 +79,25 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6059345395895507553, guid: 3d5c1345d9ec97f4b8243cb0ab88e161, type: 3}
+  m_Sprite: {fileID: -4467469887682749820, guid: 0be857084915b684ba594dd217e4fdae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 0.90625}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &8815729464505732772
+--- !u!50 &500438353237002594
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6843045863543199221}
+  m_GameObject: {fileID: 3233621454444174130}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -117,13 +117,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &8539787824907475567
-CapsuleCollider2D:
+--- !u!61 &2327718281292501239
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6843045863543199221}
+  m_GameObject: {fileID: 3233621454444174130}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -152,20 +152,26 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 0.90625}
-  m_Direction: 0
---- !u!114 &859321409963654489
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &2645643305233583164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6843045863543199221}
+  m_GameObject: {fileID: 3233621454444174130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a067596dfc0001840ab11a820b314519, type: 3}
+  m_Script: {fileID: 11500000, guid: ba7da87a92d857e44a6b09872008d19a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  direction: 1
-  velocity: 2

@@ -1,2 +1,17 @@
 fileFormatVersion: 2
 guid: 2b3b13ab0b69a90458741ce081ea7e16
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - poop: {fileID: 2612938758587690151, guid: d55a6a3d5a171d64295ede0c4c14c4c0, type: 3}
+  - poopPoint: {instanceID: 0}
+  - flipflop: {fileID: 3788340033093900238, guid: 5c568f2e7cc54ba4abc4f1b0ee4ff013, type: 3}
+  - flipflopPoint: {instanceID: 0}
+  - rock: {fileID: 2683044705362368774, guid: 675e8bb683726c64aad04c0d31211c16, type: 3}
+  - rockPoint: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

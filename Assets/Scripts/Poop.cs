@@ -6,15 +6,11 @@ public class Poop : MonoBehaviour
 
     //Me fijo si la caca está activa
     private bool isActive = false;
-
     public int valor = 1;
     
-
-
     void Update()
     {
         transform.position += Vector3.down * speed * Time.deltaTime;
-
     }
 
     public void Activate()
@@ -55,8 +51,5 @@ public class Poop : MonoBehaviour
             GameManager.Instance.SumarPuntos(valor);
             Destroy(gameObject);
         }
-
-
-
     }
 }

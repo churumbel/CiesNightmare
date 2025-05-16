@@ -1,13 +1,15 @@
 using UnityEngine;
 
-public class FlipFlop : MonoBehaviour
+public class RockMoving : MonoBehaviour
 {
     public float speed = 5f;
-    public bool isActive = false; // Variable para controlar si la ojota está activa o no
+    public bool isActive = false;
 
+    
     void Update()
     {
         transform.position += Vector3.down * speed * Time.deltaTime;
+
     }
 
     public void Activate()
@@ -20,30 +22,29 @@ public class FlipFlop : MonoBehaviour
         isActive = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         //No quiero que marque las colisiones si no esta activa
         if (!isActive) return; // Ignorar colisiones si no está activa
 
-        if (collision.gameObject.CompareTag("Turist"))
+        if (collision.gameObject.CompareTag("Factory"))
         {
-            Debug.Log("FlipFlop hit the turist!");
-            // Destruye el objeto de la chancla al colisionar
-            GameManager.Instance.RestarPuntos(1);
+            Debug.Log("Rock hit the factory!");
+            // Destruye el objeto de la piedra al colisionar
+            GameManager.Instance.SumarPuntos(5);
             Destroy(gameObject);
         }
 
         if (collision.gameObject.CompareTag("Politician"))
         {
-            Debug.Log("FlipFlop hit the politician!");
-            // Destruye el objeto de la chancla al colisionar
+            Debug.Log("Rock hit the politician!");
             GameManager.Instance.SumarPuntos(5);
             Destroy(gameObject);
         }
 
         if (collision.gameObject.CompareTag("Floor"))
         {
-            Debug.Log("FlipFlop hit the floor!");
+            Debug.Log("Rock hit the floor!");
             Destroy(gameObject);
         }
     }

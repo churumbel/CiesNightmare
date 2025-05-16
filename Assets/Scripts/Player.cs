@@ -1,7 +1,6 @@
 using UnityEngine;
 
 public class Player : MonoBehaviour
-
 {
     
     [SerializeField] private float speed;
@@ -18,16 +17,17 @@ public class Player : MonoBehaviour
 
     private Animator animator;
 
-
     // Prefab de la chancla y la posición de lanzamiento
     public GameObject flipflop;
     public Transform flipflopPoint;
     private bool hasFlipFlop = false;
 
+    // Prefab de la roca y la posición de lanzamiento
+    public GameObject rock;
+    public Transform rockPoint;
+    private bool hasRock = false;
+
     //private bool beingHurt;
-
-    
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,12 +41,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         PlayerMovement();
-        // Lanza la caca al presionar la barra espaciadora
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject poopInstance = Instantiate(poop, poopPoint.position, Quaternion.identity);
-            poopInstance.GetComponent<Poop>().Activate(); 
+            if (GameManager.Instance.UsePoop())
+            {
+                GameObject poopInstance = Instantiate(poop, poopPoint.position, Quaternion.identity);
+                poopInstance.GetComponent<Poop>().Activate();
+            }
         }
+
 
         if (Input.GetKeyDown(KeyCode.C) && hasFlipFlop==true)
         {
@@ -54,6 +57,14 @@ public class Player : MonoBehaviour
             flipflopInstance.GetComponent<FlipFlop>().Activate();
             hasFlipFlop = false; // Desactivamos la chancla después de lanzarla
             GameManager.Instance.DesactivateFlipFlop(); // Desactivamos la chancla en el GameManager
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && hasRock == true)
+        {
+            GameObject rockInstance = Instantiate(rock, rockPoint.position, Quaternion.identity);
+            rockInstance.GetComponent<RockMoving>().Activate();
+            hasRock = false; // Desactivamos la roca después de lanzarla
+            GameManager.Instance.DesactivateRock(); // Desactivamos la roca en el GameManager
         }
 
     }
@@ -89,7 +100,6 @@ public class Player : MonoBehaviour
             //cambia la posesión de la ojota sobre la gaviota
             hasFlipFlop = true;
 
-
         }
 
         if (collision.CompareTag("Politician")) // Si colisionamos con un turista
@@ -115,6 +125,17 @@ public class Player : MonoBehaviour
             BeHurt();
         }
 
+        if (collision.CompareTag("rock")) // Si colisionamos con una piedra
+        {
+            Debug.Log("Colisión con piedra fija");
+            //GameManager.Instance.GanarOjota();
+            
+            animator.SetBool("wasHurt", false);
+            //cambia la posesión de la ROCA sobre la gaviota
+            hasRock = true;
+            GameManager.Instance.hadRock(); // Cambia el estado de la chancla en el GameManager
+        }
+
     }
 
     public void BeHurt() 
@@ -124,6 +145,5 @@ public class Player : MonoBehaviour
         animator.SetBool("wasHurt", true);
         GameManager.Instance.LoseLife();
         
-
     }
 }

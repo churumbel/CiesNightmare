@@ -4,6 +4,7 @@ using UnityEngine;
 public class HUD : MonoBehaviour
 {
     public TextMeshProUGUI puntos;
+    public TextMeshProUGUI cacas;
     public GameObject[] vidas;
     public GameObject flipflop;
     public GameObject rock;
@@ -14,6 +15,7 @@ public class HUD : MonoBehaviour
         // Desactiva la ojota y la piedra al inicio
         flipflop.SetActive(false);
         rock.SetActive(false);
+        UpdatePoop(GameManager.Instance.CacasTotales);
     }
 
 
@@ -21,7 +23,6 @@ public class HUD : MonoBehaviour
     void Update()
     {
         puntos.text = "Puntos: " + GameManager.Instance.PuntosTotales.ToString();
-
     }
 
     public void UpdatePuntos(int puntosTotales)
@@ -56,6 +57,12 @@ public class HUD : MonoBehaviour
     public void ActivateRock()
     {
         rock.SetActive(true);
+    }
+
+    public void UpdatePoop(int cantidad)
+    {
+        Debug.Log("Actualizando HUD con cantidad de caca: " + cantidad);
+        cacas.text = cantidad.ToString();
     }
 
 

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4628053796371493758}
   - component: {fileID: 2564755776674588651}
-  - component: {fileID: 6758075031416020139}
   - component: {fileID: 8163266326851514372}
   - component: {fileID: 2573611259881260375}
+  - component: {fileID: 5094258984197605603}
   m_Layer: 0
   m_Name: Rock
   m_TagString: rock
@@ -90,18 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6758075031416020139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3326322528519450062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7361e59daa12e44593602d1f3d3e4b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &8163266326851514372
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -175,3 +163,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5094258984197605603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3326322528519450062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f13727c29f293b641ab9d668b176b0aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

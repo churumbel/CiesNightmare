@@ -15,6 +15,7 @@ TagManager:
   - player
   - Background
   - Cloud
+  - food
   layers:
   - Default
   - TransparentFX

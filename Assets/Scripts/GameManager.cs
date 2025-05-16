@@ -17,13 +17,12 @@ public class GameManager : MonoBehaviour
     
     public float velocitity = 2;
 
-    private string enemigoTipo;
     public GameObject frisbee;
     private GameObject frisbeeInstance;
-    private float frisbeeSpeed = 4f;
-    private float frisbeeDirection = 1f;
-    private float nubeDirection = 1f;
 
+    //Para controlar la caca
+    private int cantidadCacas = 0;
+    
 
     //para el nivel 2
     public GameObject nube; 
@@ -40,8 +39,15 @@ public class GameManager : MonoBehaviour
 
     private int lifes = 3;
 
+    //Comida
+    public List<GameObject> comidas;
+    public GameObject snack;
+    public GameObject sardina;
+
+
     public HUD hud;
     public int PuntosTotales {get { return puntosTotales; } }
+    public int CacasTotales { get { return cantidadCacas; } }
     public void SumarPuntos(int puntosASumar) 
     {
         puntosTotales += puntosASumar;
@@ -122,61 +128,17 @@ public class GameManager : MonoBehaviour
             obstaculos[i].transform.position = obstaculos[i].transform.position + new Vector3(-1, 0, 0) * Time.deltaTime * velocitity;
         }
 
-        //mover frisbee
-        if (enemigoActual != null)
+        //mover comidas
+        for (int i = 0; i < comidas.Count; i++)
         {
-            Vector3 position = enemigoActual.transform.position;
-
-            if (enemigoTipo == "frisbee")
+            if (comidas[i] == null) continue;
+            if (comidas[i].transform.position.x <= -10)
             {
-                // Movimiento zigzag vertical
-                position.x += -1 * Time.deltaTime * velocitity;
-                position.y += frisbeeSpeed * frisbeeDirection * Time.deltaTime;
-
-                if (position.y >= upperBound)
-                {
-                    position.y = upperBound;
-                    frisbeeDirection = -1f;
-                }
-                else if (position.y <= lowerBound)
-                {
-                    position.y = lowerBound;
-                    frisbeeDirection = 1f;
-                }
-
-                if (position.x < -11f)
-                {
-                    position = new Vector3(20f, Random.Range(lowerBound, upperBound), 0);
-                    frisbeeDirection = Random.value > 0.5f ? 1f : -1f;
-                }
+                float randomX = Random.Range(12, 18);
+                float randomY = Random.Range(-3f, 1f); 
+                comidas[i].transform.position = new Vector3(randomX, randomY, 0);
             }
-            else if (enemigoTipo == "nube")
-            {
-                float nubeSpeed = frisbeeSpeed * 1.5f;
-                position.x += -1 * Time.deltaTime * velocitity;
-                position.y += nubeSpeed * nubeDirection * Time.deltaTime;
-
-                if (position.y >= upperBound)
-                {
-                    position.y = upperBound;
-                    nubeDirection = -1f;
-                }
-                else if (position.y <= lowerBound)
-                {
-                    position.y = lowerBound;
-                    nubeDirection = 1f;
-                }
-
-                if (position.x < -11f)
-                {
-                    float yPos = Random.Range(lowerBound, upperBound);  // más variado
-                    position = new Vector3(20f, yPos, 0);
-                    nubeDirection = Random.value > 0.5f ? 1f : -1f;
-                }
-            }
-
-
-            enemigoActual.transform.position = position;
+            comidas[i].transform.position += Vector3.left * Time.deltaTime * velocitity;
         }
 
 
@@ -203,17 +165,18 @@ public class GameManager : MonoBehaviour
                 //NextLevel();
             }
 
-
         }
-
-
 
     }
 
     public void LoseLife()
     {
         lifes--;
-        hud.DesactivateLife(lifes);
+        if (hud != null)
+            hud.DesactivateLife(lifes);
+        else
+            Debug.LogWarning("HUD no está asignado en GameManager");
+
         if (lifes < 1)
         {
             Debug.Log("Game over =(");
@@ -235,13 +198,11 @@ public class GameManager : MonoBehaviour
         if (nivelActual == "GameScene")
         {
             enemigoActual = Instantiate(frisbee, new Vector2(10f, Random.Range(lowerBound, upperBound)), Quaternion.identity);
-            enemigoTipo = "frisbee";
         }
         else if (nivelActual == "GameSceneLevel2")
         {
             float yPos = Random.value > 0.5f ? upperBound : lowerBound;
             enemigoActual = Instantiate(nube, new Vector2(10f, yPos), Quaternion.identity);
-            enemigoTipo = "nube";
         }
     }
 
@@ -276,21 +237,18 @@ public class GameManager : MonoBehaviour
         if (nivelActual == "GameScene")
         {
             enemigoActual = Instantiate(frisbee, new Vector2(10f, Random.Range(lowerBound, upperBound)), Quaternion.identity);
-            enemigoTipo = "frisbee";
-            Debug.Log("Frisbee creado");
+            comidas.Clear();
+            comidas.Add(Instantiate(snack, new Vector2(12, -3), Quaternion.identity));
+            comidas.Add(Instantiate(sardina, new Vector2(16, -2), Quaternion.identity));
 
             obstaculos.Clear();
-            obstaculos.Add(Instantiate(turist, new Vector2(14, -3), Quaternion.identity));
-            obstaculos.Add(Instantiate(politician, new Vector2(20, -3), Quaternion.identity));
+            obstaculos.Add(Instantiate(turist, new Vector2(20, -3), Quaternion.identity));
+            obstaculos.Add(Instantiate(politician, new Vector2(26, -3), Quaternion.identity));
         }
         else if (nivelActual == "GameSceneLevel2")
         {
             float yPos = Random.value > 0.5f ? upperBound : lowerBound;
             enemigoActual = Instantiate(nube, new Vector2(10f, yPos), Quaternion.identity);
-            enemigoTipo = "nube";
-            nubeDirection = Random.value > 0.5f ? 1f : -1f;
-
-
             obstaculos.Clear();
             obstaculos.Add(Instantiate(piedra, new Vector2(14, -3), Quaternion.identity));
             obstaculos.Add(Instantiate(fabrica, new Vector2(20, -3), Quaternion.identity));
@@ -301,13 +259,40 @@ public class GameManager : MonoBehaviour
     }
 
     public void hadFlipFlop() { 
-    
         hud.ActivateFlipFlop();
     }
 
     public void DesactivateFlipFlop()
     {
         hud.DesactivateFlipFlop();
+    }
+
+    public void AddPoop(int cantidad)
+    {
+        cantidadCacas += cantidad;
+        Debug.Log("Cantidad de cacas: " + cantidadCacas);
+        hud.UpdatePoop(cantidadCacas); 
+    }
+
+    public bool UsePoop()
+    {
+        if (cantidadCacas > 0)
+        {
+            cantidadCacas--;
+            hud.UpdatePoop(cantidadCacas);
+            return true;
+        }
+        return false;
+    }
+
+    public void hadRock()
+    {
+        hud.ActivateRock();
+    }
+
+    public void DesactivateRock()
+    {
+        hud.DesactivateRock();
     }
 
 }

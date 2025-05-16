@@ -4,7 +4,7 @@ public class Cloud : MonoBehaviour
 {
     public float speed = 7f;
     public float direction = 1f;
-    public float velocity = 2f;
+    public float velocity = 8f;
 
     public float startX = 12f;
     public float endX = -12f;

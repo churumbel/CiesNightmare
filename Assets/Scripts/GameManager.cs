@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject politician;
     public List<GameObject> obstaculos;
     
-    public float velocitity = 2;
+    public float velocitity = 2f;
 
     public GameObject frisbee;
     private GameObject frisbeeInstance;
@@ -64,14 +64,12 @@ public class GameManager : MonoBehaviour
     }
 
 
-
     // Singleton para acceder a la instancia de GameManager
     public static GameManager Instance
     {
         get;
         private set;
     }
-
 
     private void Awake()
     {
@@ -125,7 +123,20 @@ public class GameManager : MonoBehaviour
                 float randomObstaculos = Random.Range(11, 18);
                 obstaculos[i].transform.position = new Vector3(randomObstaculos, -3, 0);
             }
-            obstaculos[i].transform.position = obstaculos[i].transform.position + new Vector3(-1, 0, 0) * Time.deltaTime * velocitity;
+
+           
+            string nivelActual = SceneManager.GetActiveScene().name;
+
+            if (nivelActual == "GameScene")
+            {
+                obstaculos[i].transform.position = obstaculos[i].transform.position + new Vector3(-1, 0, 0) * Time.deltaTime * velocitity;
+            }
+            else if (nivelActual == "GameSceneLevel2")
+            {
+                velocitity  = 4;
+                obstaculos[i].transform.position = obstaculos[i].transform.position + new Vector3(-1, 0, 0) * Time.deltaTime * velocitity;
+            }
+
         }
 
         //mover comidas
@@ -152,7 +163,6 @@ public class GameManager : MonoBehaviour
                 //NextLevel();
             }
             
-
         }
         if (puntosTotales > 10)
         {

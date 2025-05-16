@@ -249,9 +249,15 @@ public class GameManager : MonoBehaviour
         {
             float yPos = Random.value > 0.5f ? upperBound : lowerBound;
             enemigoActual = Instantiate(nube, new Vector2(10f, yPos), Quaternion.identity);
+            comidas.Clear();
+            
+            comidas.Add(Instantiate(sardina, new Vector2(16, -2), Quaternion.identity));
             obstaculos.Clear();
             obstaculos.Add(Instantiate(piedra, new Vector2(14, -3), Quaternion.identity));
+
+            comidas.Add(Instantiate(snack, new Vector2(12, -3), Quaternion.identity));
             obstaculos.Add(Instantiate(fabrica, new Vector2(20, -3), Quaternion.identity));
+
         }
 
         // Asegurate de volver a encontrar el fondo si cambia entre escenas

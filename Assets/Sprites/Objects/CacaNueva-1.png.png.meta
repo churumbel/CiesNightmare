@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CacaNueva-1.png_0: 8266969046085826310
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Gaviota_menu_mtv_0: -797409370984375455
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

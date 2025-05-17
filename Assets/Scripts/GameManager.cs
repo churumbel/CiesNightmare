@@ -11,14 +11,14 @@ public class GameManager : MonoBehaviour
     public GameObject floor;
     public List <GameObject> flat;
 
-    public GameObject turist;
-    public GameObject politician;
+    //public GameObject turist;
+    //public GameObject politician;
     public List<GameObject> obstaculos;
     
     public float velocitity = 2f;
 
-    public GameObject frisbee;
-    private GameObject frisbeeInstance;
+    //public GameObject frisbee;
+    //private GameObject frisbeeInstance;
 
     //Para controlar la caca
     private int cantidadCacas = 0;
@@ -87,14 +87,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-   
-    void Start()
-    {
-        
-
-    }
-
-    
     void FixedUpdate()
     {
         //acá muevo el fondo de la playa
@@ -103,46 +95,6 @@ public class GameManager : MonoBehaviour
         {
             backgroud.material.mainTextureOffset += new Vector2(0.015f, 0) * Time.deltaTime;
         }
-
-        //mover obstaculos
-        for (int i = 0; i < obstaculos.Count; i++)
-        {
-            // Para evitar el acceso a objetos destruidos
-            if (obstaculos[i] == null) continue; 
-            if (obstaculos[i].transform.position.x <= -10)
-            {
-                float randomObstaculos = Random.Range(11, 18);
-                obstaculos[i].transform.position = new Vector3(randomObstaculos, -3, 0);
-            }
-
-           
-            string nivelActual = SceneManager.GetActiveScene().name;
-
-            if (nivelActual == "GameScene")
-            {
-                obstaculos[i].transform.position = obstaculos[i].transform.position + new Vector3(-1, 0, 0) * Time.deltaTime * velocitity;
-            }
-            else if (nivelActual == "GameSceneLevel2")
-            {
-                velocitity  = 4;
-                obstaculos[i].transform.position = obstaculos[i].transform.position + new Vector3(-1, 0, 0) * Time.deltaTime * velocitity;
-            }
-
-        }
-
-        //mover comidas
-        for (int i = 0; i < comidas.Count; i++)
-        {
-            if (comidas[i] == null) continue;
-            if (comidas[i].transform.position.x <= -10)
-            {
-                float randomX = Random.Range(12, 18);
-                float randomY = Random.Range(-3f, 1f); 
-                comidas[i].transform.position = new Vector3(randomX, randomY, 0);
-            }
-            comidas[i].transform.position += Vector3.left * Time.deltaTime * velocitity;
-        }
-
 
         if (puntosTotales>3) {
             string nivelActual = SceneManager.GetActiveScene().name;
@@ -165,9 +117,7 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("GameWinner");
                 //NextLevel();
             }
-
         }
-
     }
 
     public void LoseLife()
@@ -198,7 +148,7 @@ public class GameManager : MonoBehaviour
 
         if (nivelActual == "GameScene")
         {
-            enemigoActual = Instantiate(frisbee, new Vector2(10f, Random.Range(lowerBound, upperBound)), Quaternion.identity);
+            //enemigoActual = Instantiate(frisbee, new Vector2(10f, Random.Range(lowerBound, upperBound)), Quaternion.identity);
             lifes = 3;
         }
         else if (nivelActual == "GameSceneLevel2")
@@ -238,14 +188,8 @@ public class GameManager : MonoBehaviour
     {
         if (nivelActual == "GameScene")
         {
-            enemigoActual = Instantiate(frisbee, new Vector2(10f, Random.Range(lowerBound, upperBound)), Quaternion.identity);
-            comidas.Clear();
-            comidas.Add(Instantiate(snack, new Vector2(12, -3), Quaternion.identity));
-            comidas.Add(Instantiate(sardina, new Vector2(16, -2), Quaternion.identity));
-
-            obstaculos.Clear();
-            obstaculos.Add(Instantiate(turist, new Vector2(20, -3), Quaternion.identity));
-            obstaculos.Add(Instantiate(politician, new Vector2(26, -3), Quaternion.identity));
+            //enemigoActual = Instantiate(frisbee, new Vector2(10f, Random.Range(lowerBound, upperBound)), Quaternion.identity);
+            WaveSpawner.Instance.SetNivel(nivelActual);
         }
         else if (nivelActual == "GameSceneLevel2")
         {
@@ -253,14 +197,8 @@ public class GameManager : MonoBehaviour
             hud.SetLifes(lifes);
             float yPos = Random.value > 0.5f ? upperBound : lowerBound;
             enemigoActual = Instantiate(nube, new Vector2(10f, yPos), Quaternion.identity);
-            comidas.Clear();
-            
-            comidas.Add(Instantiate(sardina, new Vector2(16, -2), Quaternion.identity));
-            obstaculos.Clear();
-            obstaculos.Add(Instantiate(piedra, new Vector2(14, -3), Quaternion.identity));
+            WaveSpawner.Instance.SetNivel(nivelActual);
 
-            comidas.Add(Instantiate(snack, new Vector2(12, -3), Quaternion.identity));
-            obstaculos.Add(Instantiate(fabrica, new Vector2(20, -3), Quaternion.identity));
 
         }
         
@@ -268,6 +206,9 @@ public class GameManager : MonoBehaviour
 
         // Asegurate de volver a encontrar el fondo si cambia entre escenas
         backgroud = GameObject.FindWithTag("Background")?.GetComponent<Renderer>();
+
+        
+
     }
 
     public void hadFlipFlop() { 

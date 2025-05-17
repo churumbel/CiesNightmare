@@ -8,7 +8,15 @@ public class Rock : MonoBehaviour
         if (collision.CompareTag("player"))
         {
             Debug.Log("Roca recogida!");
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
+
+        }
+
+        if (collision.CompareTag("Cloud"))
+        {
+            Debug.Log("Roca tomada por la nube!");
+            gameObject.SetActive(false);
+
         }
     }
 }

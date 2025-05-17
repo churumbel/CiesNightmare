@@ -28,9 +28,16 @@ public class Player : MonoBehaviour
     public Transform rockPoint;
     private bool hasRock = false;
 
-    //private bool beingHurt;
+    private AudioManager audioManager;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        audioManager = FindFirstObjectByType<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("No se encontró el AudioManager en la escena.");
+        }
+    }
     void Start()
     {
         startPos = transform.position;
@@ -49,6 +56,7 @@ public class Player : MonoBehaviour
                 
                 GameObject poopInstance = PoopPool.Instance.RequestObject();
                 poopInstance.transform.position = poopPoint.position;
+                audioManager.SeleccionAudio(0, 0.5f);
                 Debug.Log("uso caca del pool");
             }
         }
@@ -58,6 +66,7 @@ public class Player : MonoBehaviour
         {
             GameObject flipflopInstance = Instantiate(flipflop, flipflopPoint.position, Quaternion.identity);
             flipflopInstance.GetComponent<FlipFlop>().Activate();
+            audioManager.SeleccionAudio(1, 0.5f);
             hasFlipFlop = false; // Desactivamos la chancla después de lanzarla
             GameManager.Instance.DesactivateFlipFlop(); // Desactivamos la chancla en el GameManager
             animator.SetBool("hasFlipFlop", false);
@@ -67,6 +76,7 @@ public class Player : MonoBehaviour
         {
             GameObject rockInstance = Instantiate(rock, rockPoint.position, Quaternion.identity);
             rockInstance.GetComponent<RockMoving>().Activate();
+            audioManager.SeleccionAudio(1, 0.5f);
             hasRock = false; // Desactivamos la roca después de lanzarla
             GameManager.Instance.DesactivateRock(); // Desactivamos la roca en el GameManager
         }
@@ -113,31 +123,33 @@ public class Player : MonoBehaviour
             //si la chancla toca al político, debería destruir al proyecto de ley
             //Destroy(collision.gameObject); // Lo destruimos
             //GameManager.Instance.PerderLife();
-            BeHurt();
+            //BeHurt();
         }
 
         if (collision.CompareTag("Frisbee")) // Si colisionamos con un frisbee
         {
             Debug.Log("Colisión con Frisbee");
-            //GameManager.Instance.GanarOjota();
             BeHurt();
         }
         if (collision.CompareTag("Cloud")) // Si colisionamos con un turista
         {
             Debug.Log("Colisión con Cloud");
-            //GameManager.Instance.GanarOjota();
+            BeHurt();
+        }
+
+        if (collision.CompareTag("Factory")) // Si colisionamos con la fabrica
+        {
+            Debug.Log("Colisión con fabrica");
             BeHurt();
         }
 
         if (collision.CompareTag("rock")) // Si colisionamos con una piedra
         {
             Debug.Log("Colisión con piedra fija");
-            //GameManager.Instance.GanarOjota();
-            
             animator.SetBool("wasHurt", false);
             //cambia la posesión de la ROCA sobre la gaviota
             hasRock = true;
-            GameManager.Instance.hadRock(); // Cambia el estado de la chancla en el GameManager
+            GameManager.Instance.hadRock(); 
         }
 
     }
@@ -153,7 +165,7 @@ public class Player : MonoBehaviour
     }
 
 
-    // Corrutina que espera 2 segundos antes de imprimir un mensaje
+    // Corrutina que espera 2 segundos para la animacion del daño
     private IEnumerator MiCorrutina()
     {
         Debug.Log("Esperando 2 segundos...");

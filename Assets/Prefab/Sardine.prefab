@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7953858657391984779}
   - component: {fileID: 3719194854936402250}
   - component: {fileID: -952078514061281786}
+  - component: {fileID: 4577326034604613139}
   m_Layer: 0
   m_Name: Sardine
   m_TagString: food
@@ -175,3 +176,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed62f3c2de2d10c479e22e66bb9c99fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4577326034604613139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8618182922866542734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45fcbff2a865cd49ae0f71e310221e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2

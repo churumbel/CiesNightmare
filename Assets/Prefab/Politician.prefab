@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9178402261173227453}
   - component: {fileID: 5547413334771919042}
   - component: {fileID: 2821239357251329985}
+  - component: {fileID: 6896806125976128337}
   m_Layer: 0
   m_Name: Politician
   m_TagString: Politician
@@ -134,3 +135,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.69086397, y: 1.0962356}
   m_EdgeRadius: 0
+--- !u!114 &6896806125976128337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4801977103455831883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45fcbff2a865cd49ae0f71e310221e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2

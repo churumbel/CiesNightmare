@@ -1,13 +1,15 @@
 using UnityEngine;
 
-public class Sardine : MonoBehaviour
+public class Food : MonoBehaviour
 {
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("player"))
+        if (collision.CompareTag("player")) 
         {
             GameManager.Instance.AddPoop(3);
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
+
         }
     }
 }

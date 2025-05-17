@@ -44,8 +44,10 @@ public class GameManager : MonoBehaviour
     public GameObject snack;
     public GameObject sardina;
 
+    public int MAX_LIFES = 3;
 
     public HUD hud;
+    public int VidasTotales { get { return lifes; } }
     public int PuntosTotales {get { return puntosTotales; } }
     public int CacasTotales { get { return cantidadCacas; } }
     public void SumarPuntos(int puntosASumar) 
@@ -85,33 +87,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+   
     void Start()
     {
         
 
     }
 
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
         //acá muevo el fondo de la playa
-        //backgroud.material.mainTextureOffset = backgroud.material.mainTextureOffset + new Vector2(0.015f, 0) * Time.deltaTime;
+        
         if (backgroud != null)
         {
             backgroud.material.mainTextureOffset += new Vector2(0.015f, 0) * Time.deltaTime;
         }
-
-        //muevo el piso
-        /*
-        for (int i = 0; i < flat.Count; i++)
-        {
-            if(flat[i].transform.position.x <= -10)
-            {
-                flat[i].transform.position = new Vector3(10, -4,0);
-            }
-            flat[i].transform.position = flat[i].transform.position + new Vector3(-1,0,0) * Time.deltaTime*velocitity;
-        }*/
 
         //mover obstaculos
         for (int i = 0; i < obstaculos.Count; i++)
@@ -196,7 +187,7 @@ public class GameManager : MonoBehaviour
     }
     public void RestartGame()
     {
-        lifes = 3;
+        
 
         if (enemigoActual != null)
         {
@@ -208,6 +199,7 @@ public class GameManager : MonoBehaviour
         if (nivelActual == "GameScene")
         {
             enemigoActual = Instantiate(frisbee, new Vector2(10f, Random.Range(lowerBound, upperBound)), Quaternion.identity);
+            lifes = 3;
         }
         else if (nivelActual == "GameSceneLevel2")
         {
@@ -257,6 +249,8 @@ public class GameManager : MonoBehaviour
         }
         else if (nivelActual == "GameSceneLevel2")
         {
+            hud = FindAnyObjectByType<HUD>();
+            hud.SetLifes(lifes);
             float yPos = Random.value > 0.5f ? upperBound : lowerBound;
             enemigoActual = Instantiate(nube, new Vector2(10f, yPos), Quaternion.identity);
             comidas.Clear();
@@ -269,6 +263,8 @@ public class GameManager : MonoBehaviour
             obstaculos.Add(Instantiate(fabrica, new Vector2(20, -3), Quaternion.identity));
 
         }
+        
+
 
         // Asegurate de volver a encontrar el fondo si cambia entre escenas
         backgroud = GameObject.FindWithTag("Background")?.GetComponent<Renderer>();

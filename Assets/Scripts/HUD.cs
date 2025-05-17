@@ -16,6 +16,8 @@ public class HUD : MonoBehaviour
         flipflop.SetActive(false);
         rock.SetActive(false);
         UpdatePoop(GameManager.Instance.CacasTotales);
+        SetLifes(GameManager.Instance.VidasTotales);
+
     }
 
 
@@ -63,6 +65,20 @@ public class HUD : MonoBehaviour
     {
         Debug.Log("Actualizando HUD con cantidad de caca: " + cantidad);
         cacas.text = cantidad.ToString();
+    }
+
+    public void SetLifes(int lifesParam)
+    {
+        for (int i = 0; i < lifesParam; i++)
+        {
+            vidas[i].SetActive(true);
+        }
+
+        for (int i = lifesParam; i < GameManager.Instance.MAX_LIFES; i++)
+        {
+            vidas[i].SetActive(false);
+        }
+
     }
 
 

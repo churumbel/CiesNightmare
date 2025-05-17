@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private Vector2 startPos;
 
     // Prefab de la caca y la posición de lanzamiento
-    public GameObject poop; 
+    public GameObject ObjectPool; 
     public Transform poopPoint;
 
     private Animator animator;
@@ -46,8 +46,10 @@ public class Player : MonoBehaviour
         {
             if (GameManager.Instance.UsePoop())
             {
-                GameObject poopInstance = Instantiate(poop, poopPoint.position, Quaternion.identity);
-                poopInstance.GetComponent<Poop>().Activate();
+                
+                GameObject poopInstance = PoopPool.Instance.RequestObject();
+                poopInstance.transform.position = poopPoint.position;
+                Debug.Log("uso caca del pool");
             }
         }
 

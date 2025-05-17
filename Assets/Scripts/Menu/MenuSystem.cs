@@ -21,6 +21,15 @@ public class MenuSystem : MonoBehaviour
         SceneManager.LoadScene("Instructions1");  
     }
 
+    public void ReadRealInstructions()
+    {
+        if (GameManager.Instance != null)
+        {
+            Destroy(GameManager.Instance.gameObject);
+        }
+        SceneManager.LoadScene("Instructions2");
+    }
+
     public void Quit()
     {
         Application.Quit();

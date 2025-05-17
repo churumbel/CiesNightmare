@@ -276,8 +276,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -652, y: 7}
-  m_SizeDelta: {x: 500, y: 400}
+  m_AnchoredPosition: {x: -577, y: 7}
+  m_SizeDelta: {x: 600, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &421322590
 MonoBehaviour:
@@ -631,11 +631,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ademas de la sorpresa aerea, junta las piedras y tiralas contra la fabrica. 
-    La gaviota gana con 50 puntos.
+  m_text: "Adem\xE1s de la sorpresa aerea, junt\xE1 las piedras y tiralas contra
+    la f\xE1brica.  La gaviota gana con 30 puntos."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e7998cd3ee6db554d87a30c3534b5e14, type: 2}
+  m_sharedMaterial: {fileID: 7200476943749798868, guid: e7998cd3ee6db554d87a30c3534b5e14, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -768,10 +768,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Clic en la letra n para continuar
+  m_text: Clic en la letra N para continuar.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e7998cd3ee6db554d87a30c3534b5e14, type: 2}
+  m_sharedMaterial: {fileID: 7200476943749798868, guid: e7998cd3ee6db554d87a30c3534b5e14, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -906,8 +906,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Pasaste al siguiente nivel
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e7998cd3ee6db554d87a30c3534b5e14, type: 2}
+  m_sharedMaterial: {fileID: 7200476943749798868, guid: e7998cd3ee6db554d87a30c3534b5e14, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

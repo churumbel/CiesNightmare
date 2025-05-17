@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.C) && hasFlipFlop==true)
+        if (Input.GetKeyDown(KeyCode.A) && hasFlipFlop==true)
         {
             GameObject flipflopInstance = Instantiate(flipflop, flipflopPoint.position, Quaternion.identity);
             flipflopInstance.GetComponent<FlipFlop>().Activate();
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
             animator.SetBool("hasFlipFlop", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && hasRock == true)
+        if (Input.GetKeyDown(KeyCode.A) && hasRock == true)
         {
             GameObject rockInstance = Instantiate(rock, rockPoint.position, Quaternion.identity);
             rockInstance.GetComponent<RockMoving>().Activate();

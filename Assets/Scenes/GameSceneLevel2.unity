@@ -834,6 +834,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaveSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 3237687812613019928, guid: d3878c98f72b6ca4b98196ee69991b17, type: 3}
+      propertyPath: 'nivelesData.Array.data[1].ordenDeAparicion.Array.data[5]'
+      value: 
+      objectReference: {fileID: 4801977103455831883, guid: 2817001815040dd4391152fb49e22184, type: 3}
     - target: {fileID: 5718982027043961782, guid: d3878c98f72b6ca4b98196ee69991b17, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

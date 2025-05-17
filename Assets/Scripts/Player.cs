@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour
             flipflopInstance.GetComponent<FlipFlop>().Activate();
             hasFlipFlop = false; // Desactivamos la chancla después de lanzarla
             GameManager.Instance.DesactivateFlipFlop(); // Desactivamos la chancla en el GameManager
+            animator.SetBool("hasFlipFlop", false);
         }
 
         if (Input.GetKeyDown(KeyCode.R) && hasRock == true)
@@ -144,6 +146,16 @@ public class Player : MonoBehaviour
         animator.SetBool("hasFlipFlop", false);
         animator.SetBool("wasHurt", true);
         GameManager.Instance.LoseLife();
+        StartCoroutine(MiCorrutina());
         
+    }
+
+
+    // Corrutina que espera 2 segundos antes de imprimir un mensaje
+    private IEnumerator MiCorrutina()
+    {
+        Debug.Log("Esperando 2 segundos...");
+        yield return new WaitForSeconds(2);
+        animator.SetBool("wasHurt", false);
     }
 }

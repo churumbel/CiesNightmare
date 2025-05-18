@@ -40,7 +40,7 @@ Desarrollar un videojuego funcional en Unity que demuestre las habilidades adqui
 
 ---
 
-###🧩 UI y elementos interactivos
+### 🧩 UI y elementos interactivos
 - Corazones de vida.
 - Indicador de puntuación.
 - Botones interactivos y textos informativos.

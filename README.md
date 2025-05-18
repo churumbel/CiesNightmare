@@ -10,7 +10,7 @@ Controla a una gaviota rebelde, esquiva frisbees y nubes tóxicas, quítale la c
 Desarrollar un videojuego funcional en Unity que demuestre las habilidades adquiridas durante el curso de Programación Multimedia y Dispositivos Móviles (PMDM).
 ---
 
-##🛠️ Herramientas y tecnologías
+## 🛠️ Herramientas y tecnologías
 - Unity – Motor de desarrollo de videojuegos (2D)
 - Piskel – Para la creación de sprites y pixel art
 - Google Fonts – Tipografía (Press Start 2P)
@@ -19,7 +19,7 @@ Desarrollar un videojuego funcional en Unity que demuestre las habilidades adqui
 
 ---
 
-##🎬 Escenas del juego (capturas de pantalla)
+## 🎬 Escenas del juego (capturas de pantalla)
 ### Pantalla de inicio – Menú principal con acceso a instrucciones.
 ![Menú principal](https://github.com/churumbel/CiesNightmare/blob/482191c23e60ded333150f50f6d5b48b9321b82f/Assets/CapturasReadMe/menu.jpg)
 

@@ -17,9 +17,7 @@ public class MenuPause : MonoBehaviour
             {
                 PauseGame();
             }
-
         }
-
     }
 
     public void ResumeGame()

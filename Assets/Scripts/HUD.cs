@@ -9,7 +9,6 @@ public class HUD : MonoBehaviour
     public GameObject flipflop;
     public GameObject rock;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // Desactiva la ojota y la piedra al inicio
@@ -20,8 +19,6 @@ public class HUD : MonoBehaviour
 
     }
 
-
-    // Update is called once per frame
     void Update()
     {
         puntos.text = "Puntos: " + GameManager.Instance.PuntosTotales.ToString();

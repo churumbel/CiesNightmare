@@ -4,13 +4,10 @@ using UnityEngine;
 public class CloudPoolManager : MonoBehaviour
 {
     public static CloudPoolManager Instance;
-
     public GameObject cloudPrefab;
     public int cloudPoolSize = 5;
-
     public float startX = 12f;
     public float endX = -12f;
-
     private List<GameObject> cloudPool = new List<GameObject>();
 
     //Para manejar el tiempo entre nube y nube
@@ -30,14 +27,12 @@ public class CloudPoolManager : MonoBehaviour
             cloud.SetActive(false);
             cloudPool.Add(cloud);
         }
-
         timer = spawnInterval;
     }
 
     private void Update()
     {
         timer -= Time.deltaTime;
-
         if (timer <= 0f)
         {
             bool spawned = TrySpawnCloud();

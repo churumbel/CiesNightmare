@@ -631,7 +631,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Adem\xE1s de la sorpresa aerea, junt\xE1 las piedras y tiralas contra
+  m_text: "Adem\xE1s de la sorpresa a\xE9rea, junta las piedras y t\xEDralas contra
     la f\xE1brica.  La gaviota gana con 30 puntos."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e7998cd3ee6db554d87a30c3534b5e14, type: 2}

@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 [RequireComponent(typeof(AudioSource))]
 public class MusicFondo : MonoBehaviour
 {
@@ -24,5 +23,4 @@ public class MusicFondo : MonoBehaviour
             Destroy(gameObject); 
         }
     }
-
 }

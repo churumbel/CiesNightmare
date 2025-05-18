@@ -3,16 +3,9 @@ using UnityEngine;
 public class Poop : MonoBehaviour
 {
     public float speed = 5f;
-
     //Me fijo si la caca está activa
-    //private bool isActive = false;
     public int valor = 1;
-    
-  
-    public void Activate()
-    {
-        //isActive = true;
-    }
+
     private void OnEnable()
     {
         transform.position += Vector3.down * speed * Time.deltaTime;
@@ -20,9 +13,6 @@ public class Poop : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //No quiero que marque las colisiones si no esta activa
-        //if (!isActive) return; // Ignorar colisiones si no está activa
-
         if (collision.gameObject.CompareTag("Turist"))
         {
             Debug.Log("Poop hit the turist!");
@@ -35,7 +25,6 @@ public class Poop : MonoBehaviour
         {
             Debug.Log("Poop hit the politician!");
             GameManager.Instance.SumarPuntos(valor);
-            // Desactiva el objeto de la caca al colisionar
             gameObject.SetActive(false);
         }
 
@@ -67,6 +56,5 @@ public class Poop : MonoBehaviour
             Debug.Log("Poop hit the cloud!");
             gameObject.SetActive(false);
         }
-
     }
 }

@@ -5,8 +5,6 @@ public class PoopPool : MonoBehaviour
 {
     [SerializeField] private GameObject poop;
     [SerializeField] private List<GameObject> listaPoop;
-    //private int poolSize = 6;
-
     public static PoopPool Instance;
 
     private void Awake()
@@ -28,7 +26,6 @@ public class PoopPool : MonoBehaviour
             listaPoop.Add(obj);
             obj.transform.parent = transform; 
         }
-
     }
 
     public GameObject RequestObject()

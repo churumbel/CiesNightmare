@@ -30,6 +30,15 @@ public class MenuSystem : MonoBehaviour
         SceneManager.LoadScene("Instructions2");
     }
 
+    public void ReadCreditos()
+    {
+        if (GameManager.Instance != null)
+        {
+            Destroy(GameManager.Instance.gameObject);
+        }
+        SceneManager.LoadScene("Creditos");
+    }
+
     public void Quit()
     {
         Application.Quit();

@@ -3,43 +3,20 @@ using System.Collections.Generic;
 using System.Collections;
 
 public class WaveSpawner : MonoBehaviour
-
 {
     public static WaveSpawner Instance;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    [System.Serializable]
-    public class PoolItem
-    {
-        public string name;
-        public GameObject prefab;
-    }
-    [System.Serializable]
-    public class NivelData
-    {
-        public string nombreNivel;
-        public List<GameObject> ordenDeAparicion;
-    }
-
     [SerializeField] private List<NivelData> nivelesData;
     private List<GameObject> pool = new List<GameObject>();
     private List<GameObject> ordenActual = new List<GameObject>();
-
-    
-
-    public Transform spawnPoint; 
+    public Transform spawnPoint;
     public float spawnInterval = 2f;
 
     private int nextIndex = 0;
     private float timer;
 
-    private void Start()
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
     private void Update()
@@ -98,6 +75,14 @@ public class WaveSpawner : MonoBehaviour
 
         nextIndex = 0;
         timer = 0f;
+    }
+
+    //En lugar de armar un script para NivelData, lo hago directamente acá y en el inspector
+    [System.Serializable]
+    public class NivelData
+    {
+        public string nombreNivel;
+        public List<GameObject> ordenDeAparicion;
     }
 
 

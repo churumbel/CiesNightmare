@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 66362067}
   - component: {fileID: 66362065}
   - component: {fileID: 66362066}
+  - component: {fileID: 66362069}
   m_Layer: 0
   m_Name: Background
   m_TagString: Background
@@ -228,6 +229,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &66362069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66362064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1730286bbe65974aa1bff4dff992575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 0.015
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +722,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3abe93bfbef23d547a9c62b23ee1f019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1442782804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1442782806}
+  - component: {fileID: 1442782805}
+  m_Layer: 0
+  m_Name: FrisbeePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1442782805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442782804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609d7ab343f32c64dad5b5a12f8053bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frisbeePrefab: {fileID: 6843045863543199221, guid: 6c6cce52c7a0bea4f97f3c22854d32fa, type: 3}
+  frisbeePoolSize: 5
+  startX: 12
+  endX: -12
+  spawnInterval: 3
+--- !u!4 &1442782806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442782804}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.692347, y: -0.8081572, z: 447.34332}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1547474269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,3 +1372,4 @@ SceneRoots:
   - {fileID: 871211224}
   - {fileID: 9027801632226509437}
   - {fileID: 2071223211}
+  - {fileID: 1442782806}

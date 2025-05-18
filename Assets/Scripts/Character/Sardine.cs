@@ -8,7 +8,6 @@ public class Sardine : MonoBehaviour
         {
             GameManager.Instance.AddPoop(3);
             gameObject.SetActive(false);
-
         }
     }
 }

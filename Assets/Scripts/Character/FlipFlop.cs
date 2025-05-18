@@ -3,7 +3,8 @@ using UnityEngine;
 public class FlipFlop : MonoBehaviour
 {
     public float speed = 5f;
-    public bool isActive = false; // Variable para controlar si la ojota está activa o no
+    // Variable para controlar si la ojota está activa o no
+    public bool isActive = false; 
 
     void Update()
     {

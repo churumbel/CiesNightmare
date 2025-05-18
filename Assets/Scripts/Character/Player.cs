@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    
     [SerializeField] private float speed;
-    //[SerializeField] private float bound = 4.5f;
     private float upperBound=4;
     private float lowerBound= -3.5f;
 
@@ -42,7 +40,6 @@ public class Player : MonoBehaviour
     {
         startPos = transform.position;
         animator = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
@@ -53,7 +50,6 @@ public class Player : MonoBehaviour
         {
             if (GameManager.Instance.UsePoop())
             {
-                
                 GameObject poopInstance = PoopPool.Instance.RequestObject();
                 poopInstance.transform.position = poopPoint.position;
                 audioManager.SeleccionAudio(0, 0.5f);
@@ -67,8 +63,9 @@ public class Player : MonoBehaviour
             GameObject flipflopInstance = Instantiate(flipflop, flipflopPoint.position, Quaternion.identity);
             flipflopInstance.GetComponent<FlipFlop>().Activate();
             audioManager.SeleccionAudio(1, 0.5f);
-            hasFlipFlop = false; // Desactivamos la chancla después de lanzarla
-            GameManager.Instance.DesactivateFlipFlop(); // Desactivamos la chancla en el GameManager
+            // Desactivo la chancla después de lanzarla
+            hasFlipFlop = false; 
+            GameManager.Instance.DesactivateFlipFlop(); 
             animator.SetBool("hasFlipFlop", false);
         }
 
@@ -77,8 +74,9 @@ public class Player : MonoBehaviour
             GameObject rockInstance = Instantiate(rock, rockPoint.position, Quaternion.identity);
             rockInstance.GetComponent<RockMoving>().Activate();
             audioManager.SeleccionAudio(1, 0.5f);
-            hasRock = false; // Desactivamos la roca después de lanzarla
-            GameManager.Instance.DesactivateRock(); // Desactivamos la roca en el GameManager
+            // Desactivo la roca después de lanzarla
+            hasRock = false; 
+            GameManager.Instance.DesactivateRock(); 
         }
 
     }
@@ -86,7 +84,6 @@ public class Player : MonoBehaviour
     {
         // Para que la gaviota se mueva en el eje vertical
         float moveInput = Input.GetAxisRaw("Vertical"); 
-
         Vector2 playerPosition = transform.position;
         // Limitamos el movimiento en el eje Y
         playerPosition.y = Mathf.Clamp(playerPosition.y + moveInput * speed * Time.deltaTime, lowerBound, upperBound);
@@ -101,49 +98,41 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Turist")) // Si colisionamos con un turista
+        if (collision.CompareTag("Turist")) 
         {
             Debug.Log("Colisión con turista");
-            //GameManager.Instance.GanarOjota();
-
             //cambia la animación de la gaviota
             animator.SetBool("hasFlipFlop", true);
-            GameManager.Instance.hadFlipFlop(); // Cambia el estado de la chancla en el GameManager
+            GameManager.Instance.hadFlipFlop(); 
             animator.SetBool("wasHurt", false);
-
             //cambia la posesión de la ojota sobre la gaviota
             hasFlipFlop = true;
 
         }
 
-        if (collision.CompareTag("Politician")) // Si colisionamos con un turista
+        if (collision.CompareTag("Politician")) 
         {
             Debug.Log("Colisión con político");
-            //Si toca al politico debería perder una vida, si toca suelo, debería perder una vida
-            //si la chancla toca al político, debería destruir al proyecto de ley
-            //Destroy(collision.gameObject); // Lo destruimos
-            //GameManager.Instance.PerderLife();
-            //BeHurt();
         }
 
-        if (collision.CompareTag("Frisbee")) // Si colisionamos con un frisbee
+        if (collision.CompareTag("Frisbee")) 
         {
             Debug.Log("Colisión con Frisbee");
             BeHurt();
         }
-        if (collision.CompareTag("Cloud")) // Si colisionamos con un turista
+        if (collision.CompareTag("Cloud"))
         {
             Debug.Log("Colisión con Cloud");
             BeHurt();
         }
 
-        if (collision.CompareTag("Factory")) // Si colisionamos con la fabrica
+        if (collision.CompareTag("Factory")) 
         {
             Debug.Log("Colisión con fabrica");
             BeHurt();
         }
 
-        if (collision.CompareTag("rock")) // Si colisionamos con una piedra
+        if (collision.CompareTag("rock")) 
         {
             Debug.Log("Colisión con piedra fija");
             animator.SetBool("wasHurt", false);
@@ -156,7 +145,7 @@ public class Player : MonoBehaviour
 
     public void BeHurt() 
     {
-        //beingHurt = true;
+        audioManager.SeleccionAudio(2, 0.5f);
         animator.SetBool("hasFlipFlop", false);
         animator.SetBool("wasHurt", true);
         GameManager.Instance.LoseLife();

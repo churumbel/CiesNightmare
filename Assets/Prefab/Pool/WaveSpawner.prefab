@@ -48,17 +48,16 @@ MonoBehaviour:
   - nombreNivel: GameScene
     ordenDeAparicion:
     - {fileID: 3233621454444174130, guid: abad14cc327c96d4e92bb90c690d47aa, type: 3}
-    - {fileID: 6843045863543199221, guid: 6c6cce52c7a0bea4f97f3c22854d32fa, type: 3}
     - {fileID: 8618182922866542734, guid: dd68380f2f36da244861827bb2a00908, type: 3}
     - {fileID: 4801977103455831883, guid: 2817001815040dd4391152fb49e22184, type: 3}
     - {fileID: 4107622094915003031, guid: 6a3b2a1498a43b7438e2956534730f78, type: 3}
+    - {fileID: 4801977103455831883, guid: 2817001815040dd4391152fb49e22184, type: 3}
   - nombreNivel: GameSceneLevel2
     ordenDeAparicion:
     - {fileID: 3233621454444174130, guid: abad14cc327c96d4e92bb90c690d47aa, type: 3}
+    - {fileID: 4801977103455831883, guid: 2817001815040dd4391152fb49e22184, type: 3}
     - {fileID: 8618182922866542734, guid: dd68380f2f36da244861827bb2a00908, type: 3}
     - {fileID: 3326322528519450062, guid: 539349271dabf894787e748a8cf015c9, type: 3}
     - {fileID: 6088666260616481501, guid: 8a99166976355324aa214b839be7233a, type: 3}
-    - {fileID: 8618182922866542734, guid: dd68380f2f36da244861827bb2a00908, type: 3}
-    - {fileID: 4801977103455831883, guid: 2817001815040dd4391152fb49e22184, type: 3}
   spawnPoint: {fileID: 3730988303059173495, guid: f83a1e91f68a2324980c5bd3769f16ad, type: 3}
   spawnInterval: 2

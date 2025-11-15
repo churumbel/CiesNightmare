@@ -1181,7 +1181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SALIR
+  m_text: "CLASIFICACI\xD3N"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e7998cd3ee6db554d87a30c3534b5e14, type: 2}
   m_sharedMaterial: {fileID: 7200476943749798868, guid: e7998cd3ee6db554d87a30c3534b5e14, type: 2}
@@ -1273,7 +1273,7 @@ GameObject:
   - component: {fileID: 1481186626}
   - component: {fileID: 1481186625}
   m_Layer: 5
-  m_Name: Quit
+  m_Name: Ranking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1345,7 +1345,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1822693642}
         m_TargetAssemblyTypeName: MenuSystem, Assembly-CSharp
-        m_MethodName: Quit
+        m_MethodName: ReadLeaderboardScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

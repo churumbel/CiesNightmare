@@ -39,10 +39,13 @@ public class MenuSystem : MonoBehaviour
         SceneManager.LoadScene("Creditos");
     }
 
-    public void Quit()
+    public void ReadLeaderboardScene()
     {
-        Application.Quit();
-        Debug.Log("Quit");
+        if (GameManager.Instance != null)
+        {
+            Destroy(GameManager.Instance.gameObject);
+        }
+        SceneManager.LoadScene("LeaderboardScene");
     }
 
 }

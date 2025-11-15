@@ -5,9 +5,12 @@ public class HUD : MonoBehaviour
 {
     public TextMeshProUGUI puntos;
     public TextMeshProUGUI cacas;
+    public TextMeshProUGUI tiempo;
     public GameObject[] vidas;
     public GameObject flipflop;
     public GameObject rock;
+
+
 
     void Start()
     {
@@ -22,6 +25,7 @@ public class HUD : MonoBehaviour
     void Update()
     {
         puntos.text = "Puntos: " + GameManager.Instance.PuntosTotales.ToString();
+        UpdateTime(GameManager.Instance.GameTime);
     }
 
     public void UpdatePuntos(int puntosTotales)
@@ -77,6 +81,15 @@ public class HUD : MonoBehaviour
         }
 
     }
+
+    public void UpdateTime(float time)
+    {
+        int minutes = Mathf.FloorToInt(time / 60);
+        int seconds = Mathf.FloorToInt(time % 60);
+
+        tiempo.text = $"{minutes:00}:{seconds:00}";
+    }
+
 
 
 }

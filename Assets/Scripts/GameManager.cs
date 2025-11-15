@@ -12,7 +12,12 @@ public class GameManager : MonoBehaviour
 
     //Para controlar la caca
     private int cantidadCacas = 0;
-    
+
+    //para controlar el tiempo
+    private float gameTime = 0f;
+    public float GameTime => gameTime;
+    private bool isCounting = false;
+
     //para el nivel 2
     private GameObject enemigoActual;
     private int puntosTotales=0;
@@ -78,8 +83,9 @@ public class GameManager : MonoBehaviour
             if (nivelActual == "GameSceneLevel2")
             {
                 Debug.Log("Ganaste");
+                isCounting = false;
                 // Cambia a la escena del siguiente nivel
-                SceneManager.LoadScene("GameWinner");
+                SceneManager.LoadScene("WinnerCheckScene");
                 
             }
         }
@@ -118,7 +124,13 @@ public class GameManager : MonoBehaviour
 
         }
     }
-    
+    void Update()
+    {
+        if (isCounting)
+            gameTime += Time.deltaTime;
+    }
+
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -138,6 +150,8 @@ public class GameManager : MonoBehaviour
     {
         if (nivelActual == "GameScene")
         {
+            gameTime = 0f;
+            isCounting = true;
             WaveSpawner.Instance.SetNivel(nivelActual);
         }
         else if (nivelActual == "GameSceneLevel2")

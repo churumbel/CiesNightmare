@@ -32,6 +32,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Creditos.unity
     guid: 66c8b6a584c4ca54a99d86da7f7772d3
+  - enabled: 1
+    path: Assets/Scenes/LeaderboardScene.unity
+    guid: fa670227c66ecdd48976709348fbde80
+  - enabled: 1
+    path: Assets/Scenes/WinnerCheckScene.unity
+    guid: bcb7192e5ff230f448d331965ea9586b
+  - enabled: 1
+    path: Assets/Scenes/AskName.unity
+    guid: 7400046ac4629034cbde1d569196aa58
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

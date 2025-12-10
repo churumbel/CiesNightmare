@@ -10,8 +10,8 @@ public class SupabaseManager : MonoBehaviour
     // Singleton
     public static SupabaseManager Instance { get; private set; }
 
-    public string supabaseUrl = "https://pffqzpedhqzaytwiajmh.supabase.co/rest/v1/scores";
-    public string apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBmZnF6cGVkaHF6YXl0d2lham1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMxODA5ODQsImV4cCI6MjA3ODc1Njk4NH0.4-U0XSff5hITiHCb0rVyxdNgb5E9lWPkkmhU_YYWF5A";
+    public string supabaseUrl = "";
+    public string apiKey = "";
 
     private void Awake()
     {

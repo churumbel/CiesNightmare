@@ -35,6 +35,7 @@ public class PoopPool : MonoBehaviour
             if (!listaPoop[i].activeSelf)
             {
                 listaPoop[i].SetActive(true);
+
                 return listaPoop[i];
             }
         }

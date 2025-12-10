@@ -12,6 +12,7 @@ Desarrollar un videojuego funcional en Unity que demuestre las habilidades adqui
 
 ## 🛠️ Herramientas y tecnologías
 - Unity – Motor de desarrollo de videojuegos (2D)
+- Supabase - para manejo del ranking (Postgres)
 - Piskel – Para la creación de sprites y pixel art
 - Google Fonts – Tipografía (Press Start 2P)
 - Pixabay / ZapSplat – Música y efectos de sonido sin copyright
@@ -39,6 +40,15 @@ Desarrollar un videojuego funcional en Unity que demuestre las habilidades adqui
 ![Victoria](https://github.com/churumbel/CiesNightmare/blob/482191c23e60ded333150f50f6d5b48b9321b82f/Assets/CapturasReadMe/pantallawin.jpg)
 
 ---
+
+## Base de datos y versión móvil
+
+- Ahora el proyecto usa **Supabase** como backend para la base de datos.
+![Ranking](https://github.com/churumbel/CiesNightmare/blob/main/Assets/CapturasReadMe/clasificaciongaviota.png)  
+- Hay disponible una **versión para móviles** que reconoce el dispositivo y solo muestra los botones si se está jugando desde un dispositivo Android.
+
+![Versión para móviles](https://github.com/churumbel/CiesNightmare/blob/main/Assets/CapturasReadMe/captura%20movil%201.jpg)
+
 
 ### 🧩 UI y elementos interactivos
 - Corazones de vida.

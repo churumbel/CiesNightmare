@@ -10,4 +10,9 @@ public class ChangeLevel : MonoBehaviour
             SceneManager.LoadScene("GameSceneLevel2");
         }
     }
+
+    public void LoadLevel2()
+    {
+        SceneManager.LoadScene("GameSceneLevel2");
+    }
 }

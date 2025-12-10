@@ -10,9 +10,7 @@ public class SupabaseManager : MonoBehaviour
     // Singleton
     public static SupabaseManager Instance { get; private set; }
 
-    public string supabaseUrl = "";
-    public string apiKey = "";
-
+    
     private void Awake()
     {
         if (Instance != null && Instance != this)
